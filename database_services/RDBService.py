@@ -198,7 +198,7 @@ class RDBService:
         conn = RDBService._get_db_connection()
         cur = conn.cursor()
 
-        target_id = f'select {comment_schema}.{comment_table}.userID from {comment_schema}.{comment_table} {wc}'
+        target_id = f'select {comment_schema}.{comment_table}.user_id from {comment_schema}.{comment_table} {wc}'
         sql = f'select * from {user_schema}.{user_table} where {user_schema}.{user_table}.id = ({target_id})'
         print(sql)
         print(args)

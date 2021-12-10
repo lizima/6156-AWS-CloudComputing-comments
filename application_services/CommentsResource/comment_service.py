@@ -34,5 +34,5 @@ class CommentResource(BaseRDBApplicationResource):
 
     @classmethod
     def find_linked_user(cls, template):
-        res = RDBService.find_linked_user("UserInfo", "CommentInfo", "User", "Forum", template)
+        res = RDBService.find_linked_user("UserInfo", "CommentInfo", "User", "Comment", template)
         return res

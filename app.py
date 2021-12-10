@@ -144,10 +144,10 @@ def get_comments_from_forum_id(forum_id):
 def get_linked_user(comment_id):
     if request.method == 'GET':
         template = {"comment_id": comment_id}
-        res = CommentsResource.find_linked_user(template)
+        res = CommentResource.find_linked_user(template)
         rsp = Response(json.dumps(res, default=str), status=200, content_type="application/json")
         return rsp
 
 
 if __name__ == '__main__':
-    app.run(port=5000, debug=False, host="0.0.0.0")
+    app.run(port=8080, debug=False, host="0.0.0.0")
