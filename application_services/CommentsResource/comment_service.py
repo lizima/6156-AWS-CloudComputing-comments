@@ -31,3 +31,8 @@ class CommentResource(BaseRDBApplicationResource):
     def delete(cls, template):
         res = RDBService.delete("CommentInfo", "Comment", template)
         return res
+
+    @classmethod
+    def find_linked_user(cls, template):
+        res = RDBService.find_linked_user("UserInfo", "CommentInfo", "User", "Forum", template)
+        return res

@@ -191,3 +191,20 @@ class RDBService:
             exc_type, exc_value, exc_traceback_obj = sys.exc_info()
             return res, (exc_type.__module__ + '.' + exc_type.__name__, e.args)
         return res, None
+
+    @classmethod
+    def find_linked_user(cls, user_schema, comment_schema, user_table, comment_table, template):
+        wc, args = RDBService._get_where_clause_args(template)
+        conn = RDBService._get_db_connection()
+        cur = conn.cursor()
+
+        target_id = f'select {comment_schema}.{comment_table}.userID from {comment_schema}.{comment_table} {wc}'
+        sql = f'select * from {user_schema}.{user_table} where {user_schema}.{user_table}.id = ({target_id})'
+        print(sql)
+        print(args)
+        res = cur.execute(sql, args)
+        res = cur.fetchall()
+
+        conn.close()
+
+        return res
